@@ -29,6 +29,8 @@ input("Press Enter to continue...")
 # TASK 1
 # TODO: Print the first 20 rows using a loop to identify the data.
 print("\n\nTASK 1: Printing the first 20 samples")
+for i in range(1,20):
+    print(data_list[i])
 
 # Let's change the data_list to remove the header from it.
 data_list = data_list[1:]
@@ -41,6 +43,8 @@ input("Press Enter to continue...")
 # TODO: Print the `gender` of the first 20 rows
 
 print("\nTASK 2: Printing the genders of the first 20 samples")
+for i in range(1,20):
+    print(data_list[i][6])
 
 
 # Cool! We can get the rows(samples) iterating with a for and the columns(features) by index.
@@ -52,6 +56,8 @@ input("Press Enter to continue...")
 def column_to_list(data, index):
     column_list = []
     # Tip: You can use a for to iterate over the samples, get the feature by index and append into a list
+    for d in data:
+        column_list.append(d[index])
     return column_list
 
 
@@ -71,6 +77,12 @@ input("Press Enter to continue...")
 # TODO: Count each gender. You should not use a function to do that.
 male = 0
 female = 0
+gender_list = column_to_list(data_list, -2)
+for d in gender_list:
+    if d == 'Female':
+        female+=1
+    elif d == 'Male':
+        male+=1
 
 
 # Checking the result
@@ -89,6 +101,15 @@ input("Press Enter to continue...")
 def count_gender(data_list):
     male = 0
     female = 0
+
+    gender_list = column_to_list(data_list, -2)
+
+    for d in gender_list:
+        if d == 'Female':
+            female+=1
+        elif d == 'Male':
+            male+=1
+
     return [male, female]
 
 
@@ -108,6 +129,14 @@ input("Press Enter to continue...")
 # We expect to see "Male", "Female" or "Equal" as answer.
 def most_popular_gender(data_list):
     answer = ""
+    male,female = count_gender(data_list)
+    if male > female:
+        answer = "Male"
+    elif female > male:
+        answer = "Female"
+    
+    else:
+        answer = "Equal"
     return answer
 
 
@@ -190,15 +219,15 @@ input("Press Enter to continue...")
 # TASK 11
 # Go back and make sure you documented your functions. Explain the input, output and what it do. Example:
 # def new_function(param1: int, param2: str) -> list:
-      """
-      Example function with annotations.
-      Args:
-          param1: The first parameter.
-          param2: The second parameter.
-      Returns:
-          List of X values
+    #   """
+    #   Example function with annotations.
+    #   Args:
+    #       param1: The first parameter.
+    #       param2: The second parameter.
+    #   Returns:
+    #       List of X values
 
-      """
+    #   """
 
 input("Press Enter to continue...")
 # TASK 12 - Challenge! (Optional)

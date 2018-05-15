@@ -54,6 +54,13 @@ input("Press Enter to continue...")
 # TASK 3
 # TODO: Create a function to add the columns(features) of a list in another list in the same order
 def column_to_list(data, index):
+    """
+    Function for adding the columns(features) of a list in another list in the same order
+    Args:
+        data_list: a list of data
+    Returns:
+        A column list
+    """
     column_list = []
     # Tip: You can use a for to iterate over the samples, get the feature by index and append into a list
     for d in data:
@@ -99,6 +106,15 @@ input("Press Enter to continue...")
 # TODO: Create a function to count the genders. Return a list
 # Should return a list with [count_male, counf_female] (e.g., [10, 15] means 10 Males, 15 Females)
 def count_gender(data_list):
+
+    """
+    Function for counting genders
+    Args:
+        data_list: a list of data, including gender
+    Returns:
+        The number of male and female in the list
+    """
+
     male = 0
     female = 0
 
@@ -128,6 +144,15 @@ input("Press Enter to continue...")
 # TODO: Create a function to get the most popular gender and print the gender as string.
 # We expect to see "Male", "Female" or "Equal" as answer.
 def most_popular_gender(data_list):
+
+    """
+    Function for calculating most popular gender
+    Args:
+        data_list: a list of data, including the gender
+    Returns:
+        The most popular gender
+    """
+
     answer = ""
     male,female = count_gender(data_list)
     if male > female:
@@ -163,6 +188,41 @@ plt.show(block=True)
 input("Press Enter to continue...")
 # TASK 7
 # TODO: Plot a similar graph for user_types. Make sure the legend is correct.
+
+def count_user_type(data_list):
+    
+    """
+    Function for counting user types
+    Args:
+        data_list: a list of data, including the user_types.
+    Returns:
+        The number of subscribers and customers of the list
+    """
+    
+    subscriber = 0
+    customer = 0
+
+    user_type_list = column_to_list(data_list, -3)
+
+    for d in user_type_list:
+        if d == 'Subscriber':
+            subscriber+=1
+        elif d == 'Customer':
+            customer+=1
+
+    return [subscriber, customer]
+
+user_type_list = column_to_list(data_list, -3)
+types = ["Subscriber", "Customer"]
+quantity = count_user_type(data_list)
+y_pos = list(range(len(types)))
+plt.bar(y_pos, quantity)
+plt.ylabel('Quantity')
+plt.xlabel('User Type')
+plt.xticks(y_pos, types)
+plt.title('Quantity by User Type')
+plt.show(block=True)
+
 print("\nTASK 7: Check the chart!")
 
 
@@ -172,7 +232,7 @@ input("Press Enter to continue...")
 male, female = count_gender(data_list)
 print("\nTASK 8: Why the following condition is False?")
 print("male + female == len(data_list):", male + female == len(data_list))
-answer = "Type your answer here."
+answer = "Because there is empty data."
 print("Answer:", answer)
 
 # ------------ DO NOT CHANGE ANY CODE HERE ------------
@@ -190,6 +250,14 @@ max_trip = 0.
 mean_trip = 0.
 median_trip = 0.
 
+trip_duration_list = [ int(x) for x in trip_duration_list ]
+sorted_list = sorted(trip_duration_list)
+print(sorted_list[:20])
+min_trip = sorted_list[0]
+max_trip = sorted_list[len(sorted_list)-1]
+mean_trip = sum(sorted_list)/len(sorted_list)
+median_trip = sorted_list[int(len(sorted_list)/2)]
+
 
 print("\nTASK 9: Printing the min, max, mean and median")
 print("Min: ", min_trip, "Max: ", max_trip, "Mean: ", mean_trip, "Median: ", median_trip)
@@ -205,14 +273,14 @@ input("Press Enter to continue...")
 # TASK 10
 # Gender is easy because usually only have a few options. How about start_stations? How many options does it have?
 # TODO: Check types how many start_stations do we have using set()
-user_types = set()
+start_stations = set(column_to_list(data_list, 3))
 
 print("\nTASK 10: Printing start stations:")
-print(len(user_types))
-print(user_types)
+print(len(start_stations))
+print(start_stations)
 
 # ------------ DO NOT CHANGE ANY CODE HERE ------------
-assert len(user_types) == 582, "TASK 10: Wrong len of start stations."
+assert len(start_stations) == 582, "TASK 10: Wrong len of start stations."
 # -----------------------------------------------------
 
 input("Press Enter to continue...")
@@ -234,11 +302,16 @@ input("Press Enter to continue...")
 # TODO: Create a function to count user types without hardcoding the types
 # so we can use this function with a different kind of data.
 print("Will you face it?")
-answer = "no"
+answer = "yes"
 
 def count_items(column_list):
     item_types = []
     count_items = []
+
+    item_types = set(column_list)
+
+    count_items = 
+
     return item_types, count_items
 
 

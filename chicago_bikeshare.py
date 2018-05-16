@@ -310,8 +310,6 @@ def count_items(column_list):
 
     item_types = set(column_list)
 
-    count_items = 
-
     return item_types, count_items
 
 
